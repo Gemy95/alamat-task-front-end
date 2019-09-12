@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row justify-content-center" style="padding-top: 10px">
+      <div class="col-sm-12 text-center"><h3>Rent any room now</h3></div>
+    </div>
+        <br>
+        <div class="row justify-content-center" style="padding-top: 10px">
+          <div class="col-sm-5" style="padding-top: 10px" *ngFor="let post of arrayOfPosts;let i=index">
+                 <div class="card" >
+                  <img src="http://localhost:4000/uploads/{{post.image}}" class="card-img-top"
+                   alt="no image" style="height: 250px">
+                         <div class="card-body">
+                           <h5 class="card-title">address : {{post.address}} </h5>
+                           <p class="card-text">floor number : {{post.floorNumber}} </p>
+                           <p class="card-text">room number : {{post.roomNumber}} </p>
+                           <p class="card-text">room length : {{post.roomLength}}</p>
+                           <p class="card-text">room width : {{post.roomWidth}} </p>
+                           <p class="card-text">room price : {{post.price}} </p>
+
+                    <button *ngIf="isUserActive" [disabled]="arrayBtn[i]"
+                         (click)="bookNowFun(post._id);disabledfun(i)" class="btn btn-primary">
+                             Book Now 
+                      </button>
+                       </div>
+                   
+                    </div>
+                  </div>
+          </div>
+                   
+       <br> <br>
+       <div class="row pb-15">
+          <ul class="nav nav-pills" style="margin: 0 auto">
+            <li class="nav-item" *ngFor="let p of pagesCountPost ; let i=index">
+              <a class="nav-link" href="" (click)="setPagePost(i,$event,false)" 
+              [ngClass]="{'active':i==pagePost}">{{i+1}}</a>
+            </li>
+          </ul>
+      </div>
+      <br>
+  </div> 

@@ -1,0 +1,54 @@
+
+    <div class="col-sm-12">
+        <br>
+       Select the status type ?  
+        <select class="mdb-select md-form" [(ngModel)]="selectedStatus" (change)="onChange($event)">
+          <option value="" disabled selected>Choose your Status</option>
+          <option value="pending">pending</option>
+          <option value="accepted">accepted</option>
+          <option value="rejected">rejected</option>
+          </select>
+        <br><br>
+       <table class="table table-dark table-responsive text-center">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">userName</th>
+                <th scope="col">email</th>
+                <th scope="col">address</th>
+                <th scope="col">price</th>
+                <th scope="col">floorNumber</th>
+                <th scope="col">roomNumber</th>
+                <th scope="col">roomLength</th>
+                <th scope="col">roomWidth</th>
+                <th scope="col">image</th>
+                <th scope="col" *ngIf="selectedStatus==='pending'">accept</th>
+                <th scope="col" *ngIf="selectedStatus==='pending'">reject</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor=" let req of arrayRequests;let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{arrayUsers[i].userName}} </td>
+                <td>{{arrayUsers[i].email}} </td>
+                <td>{{arrayPosts[i].address}} </td>
+                <td>{{arrayPosts[i].price}} </td>
+                <td>{{arrayPosts[i].floorNumber}} </td>
+                <td>{{arrayPosts[i].roomNumber}} </td>
+                <td>{{arrayPosts[i].roomLength}} </td>
+                <td>{{arrayPosts[i].roomWidth}} </td>
+                <td>
+                 <img src="http://localhost:4000/uploads/{{arrayPosts[i].image}}" style="width:50px;height:50px">
+                </td>
+                <td *ngIf="selectedStatus==='pending'"><button class="btn btn-success" 
+                  (click)="acceptRequest(arrayRequests[i])"> Accept </button></td>
+                <td *ngIf="selectedStatus==='pending'"><button class="btn btn-danger"
+                  (click)="rejectRequest(arrayRequests[i])"> Reject </button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-sm-12 text-center" *ngIf="isEmptyRequests">
+        <h3>there is no requests till now</h3>
+    </div>
+<br><br><br><br><br><br><br><br>

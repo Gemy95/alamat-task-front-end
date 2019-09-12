@@ -1,0 +1,53 @@
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" routerLink="/">Home</a>
+      
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                 <a class="nav-link" routerLink="/form-login" routerLinkActive="active" 
+                  *ngIf="!isUserOrOwnerActive">Login</a>
+               </li>
+               <li class="nav-item">
+                <a class="nav-link" routerLink="/form-register" routerLinkActive="active"
+                 *ngIf="!isUserOrOwnerActive">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/user-profile" routerLinkActive="active"
+                 *ngIf="isUserActive">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/user-logout" routerLinkActive="active"
+                 *ngIf="isUserOrOwnerActive">logOut</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/form-add-post" routerLinkActive="active"
+                  *ngIf="isOwnerActive" >AddPost</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="/show-request" routerLinkActive="active"
+                  *ngIf="isOwnerActive"  >showRequest</a>
+              </li>
+              
+            </ul>
+        </div> 
+      </nav>
+
+      
+
+      <div style="padding:1px 2px">
+          <router-outlet></router-outlet>
+      </div>
+
+      <app-footer></app-footer>
+
+  </body>
+    

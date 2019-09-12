@@ -1,0 +1,102 @@
+
+<br>
+<div class="col-5" style="margin: 0 auto">
+    <span style="font-size: 2vw"> 
+        owner Post page
+    </span>
+    <br>
+    <span *ngIf="showSuccessMessage" style="font-size: 2vw;background-color:blue">
+        <br>
+        {{showSuccessMessage}}
+        <br>
+    </span>
+    <span class="alert alert-danger" *ngIf="showFailedMessage" style="font-size: 2vw;">
+        <br>
+        {{showFailedMessage}}
+        <br>
+    </span>
+    <br>
+
+<form [formGroup] ="formAddPost" (ngSubmit)="addFunction()"> 
+    <div class="form-label-group">
+    <label>address:</label> 
+    <input type="text" formControlName="address" class="form-control"> <br>
+    <div class="alert alert-danger" *ngIf=" address.touched && address.invalid">
+       <div *ngIf="address?.errors['required']">
+           ادخل العنوان 
+       </div>
+       <div *ngIf="address?.errors['minlength']">
+           علي الاقل 15 احرف 
+      </div>
+    </div>
+    </div>
+
+    <div class="form-label-group">
+    <label>floor Number:</label> 
+    <input type="number" formControlName="floorNumber" class="form-control" min="1"> <br>
+    <div class="alert alert-danger" *ngIf="floorNumber.invalid && floorNumber.touched">
+       <div *ngIf="floorNumber?.errors['required']">
+           ادخل رقم الدور
+       </div>
+    </div>
+
+    </div>
+    
+    
+    <div class="form-label-group">
+    <label>room Number:</label>
+    <input type="text" formControlName="roomNumber" class="form-control"  min="1"> <br>
+      <div class="alert alert-danger" *ngIf="roomNumber.invalid && roomNumber.touched">
+            <div *ngIf="roomNumber?.errors['required']">
+                ادخل رقم الحجره
+            </div>
+         </div>
+    </div>
+    
+    
+    <div class="form-label-group">
+    <label>room Length:</label>
+    <input type="number" formControlName="roomLength" class="form-control"  min="1"> <br>
+      <div class="alert alert-danger" *ngIf="roomLength.invalid && roomLength.touched">
+            <div *ngIf="roomLength?.errors['required']">
+                ادخل طول الحجره
+            </div>
+         </div>
+    </div>
+    
+    
+    <div class="form-label-group">
+    <label>room Width:</label> 
+    <input type="number" formControlName="roomWidth" class="form-control"  min="1"> <br>
+      <div class="alert alert-danger" *ngIf="roomWidth.invalid && roomWidth.touched">
+            <div *ngIf="roomWidth?.errors['required']">
+                ادخل عرض الحجره
+            </div>
+         </div>
+    </div>
+    
+
+    <div class="form-label-group">
+            <label>price:</label> 
+            <input type="number" formControlName="price" class="form-control" min="1"> <br>
+              <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+                    <div *ngIf="price?.errors['required']">
+                         ادخل السعر
+                    </div>
+                 </div>
+            </div>
+    
+   
+    
+    <div class="form-label-group">
+    <label>Image:</label> <input formControlName="image"  class="form-control" type="file" name="image"
+     multiple="multiple" ng2FileSelect [uploader]="uploader" /> <br>
+    </div>
+    
+    
+    <div class="form-label-group">
+    <input type="submit" [disabled]="formAddPost.invalid && !uploader.getNotUploadedItems().length"
+     class="btn btn-primary" value="Add" (click)="[uploader.uploadAll()]"> <br><br>
+    </div>
+</form>
+</div>

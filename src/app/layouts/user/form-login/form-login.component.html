@@ -1,0 +1,58 @@
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-img-left d-none d-md-flex">
+             <!-- Background image for card set in CSS! -->
+          </div>
+
+          <div class="card-body">
+              <br>
+              <br>
+            <h5 class="card-title text-center">Login</h5>
+            <div class="col-12">
+                <label>select type : &nbsp;</label>
+                <select [(ngModel)]="selectType">
+                  <option value="user">user</option>
+                  <option value="owner">owner</option>
+                </select>
+              </div>
+              <br>
+            <form class="form-signin" [formGroup]="formGroupLogin" (ngSubmit)="loginFunc()">
+              <div class="form-label-group">
+                <input formControlName="userEmail" type="email" class="form-control" id="inputEmail"   
+                 placeholder="Email address">
+                 <div *ngIf="userEmail.invalid && userEmail.touched"class="alert alert-danger" style="padding-top: 5px">
+                    <div *ngIf="userEmail?.errors['required']">
+                     ادخل الايميل
+                   </div>
+                   <div *ngIf="userEmail?.errors['pattern']">
+                    ادخل ايميل صحيح
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+              <div class="form-label-group">
+                <input type="password" formControlName="userPassword" id="inputPassword" class="form-control" 
+                placeholder="Password">             
+                <div class="alert alert-danger" *ngIf="userPassword.invalid && userPassword.touched">
+                      <div *ngIf="userPassword?.errors['required']">
+                                ادخل الباسورد
+                      </div>
+                      <div *ngIf="userPassword?.errors['minlength']">
+                                  الباسورد لا يقل عن 5 احرف
+                       </div>
+                </div>
+              </div>
+              <input type="submit" class="btn btn-lg btn-primary btn-block text-uppercase" value="login"
+              [disabled]="formGroupLogin.invalid" >
+              <a class="d-block text-center mt-2 small" routerLink="/form-register">Register</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 

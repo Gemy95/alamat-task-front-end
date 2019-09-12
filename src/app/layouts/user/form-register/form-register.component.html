@@ -1,0 +1,71 @@
+<div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-xl-9 mx-auto">
+            <div class="card card-signin flex-row my-5">
+              <div class="card-img-left d-none d-md-flex">
+                 <!-- Background image for card set in CSS! -->
+              </div>
+              <div class="card-body">
+                   <br>
+                <h5 class="card-title text-center">Register</h5>
+                <div class="col-12">
+                    <label>select type : &nbsp;</label>
+                    <select [(ngModel)]="selectType">
+                      <option value="user">user</option>
+                      <option value="owner">owner</option>
+                    </select>
+                  </div>
+                  <br>
+                <form class="form-signin" [formGroup]="formGroupRegister" (ngSubmit)=" registerFunc()">
+                  <div class="form-label-group">
+                    <input type="text" id="inputUserame" class="form-control" placeholder="Username" 
+                      formControlName="userName">
+                      <div class="alert alert-danger" *ngIf="userName.invalid && userName.touched">
+                            <div *ngIf="userName?.errors['required']">
+                                ادخل الاسم               
+                            </div>
+                            <div *ngIf="userName?.errors['minlength']">
+                                  الاسم علي الاقل 3 احرف
+                            </div>
+
+                      </div>
+                  </div>
+    
+                  <div class="form-label-group">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" 
+                     formControlName="userEmail">
+                    <div class="alert alert-danger" *ngIf="userEmail.invalid && userEmail.touched">
+                        <div *ngIf="userEmail?.errors['required']">
+                              ادخل الايميل
+                        </div>
+                        <div *ngIf="userEmail?.errors['pattern']">
+                               ادخل ايميل صحيح
+                        </div>
+                        
+                  </div>
+                  </div>
+                  
+                  <hr>
+    
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                     required formControlName="userPassword">
+                     <div class="alert alert-danger" *ngIf="userPassword.invalid && userPassword.touched">
+                                 <div *ngIf="userPassword?.errors['required']">
+                                          ادخل كلمة السر
+                                 </div>
+                                 <div *ngIf="userPassword?.errors['minlength']">
+                                          كلمة السر علي الاقل 5 احرف
+                                </div>
+                     </div>
+                  </div>
+                  
+                  <input class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" 
+                  value="Register" [disabled]="formGroupRegister.invalid">
+                  <a class="d-block text-center mt-2 small" routerLink="/form-login">Sign In</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
